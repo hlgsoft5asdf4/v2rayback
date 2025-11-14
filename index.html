@@ -3,360 +3,258 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>未来空间 - hlgsoft</title>
+    <title>绿色印记 - 你的名字</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@300;400&display=swap');
-
         :root {
-            --primary-color: #00e6e6; /* 青色 */
-            --secondary-color: #ff00ff; /* 洋红色 */
-            --dark-bg: #1a1a2e; /* 深蓝紫 */
-            --light-bg: #21213e; /* 稍亮的深蓝紫 */
-            --text-color: #e0e0e0; /* 浅灰色 */
-            --border-color: #3a3a5a; /* 边框色 */
-            --glow-color: #00ffff; /* 发光色 */
-            --animation-duration: 1.5s;
+            --primary-green: #4CAF50; /* 主绿色 */
+            --secondary-green: #8BC34A; /* 次绿色 */
+            --dark-green: #2E7D32; /* 深绿色 */
+            --light-green: #DCEDC8; /* 浅绿色 */
+            --blue-sky: #81D4FA; /* 天蓝色 */
+            --text-color: #333; /* 主要文本色 */
+            --light-text-color: #666; /* 次要文本色 */
+            --white-bg: #FFFFFF; /* 白色背景 */
+            --card-bg: #F9F9F9; /* 卡片背景 */
+            --border-color: #E0E0E0; /* 边框色 */
+            --transition-speed: 0.3s;
         }
 
         body {
+            font-family: 'Open Sans', sans-serif;
             margin: 0;
             padding: 0;
-            font-family: 'Roboto Mono', monospace;
+            background: linear-gradient(135deg, var(--light-green) 0%, var(--blue-sky) 100%);
             color: var(--text-color);
-            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--light-bg) 100%);
+            line-height: 1.6;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* 背景粒子动画 */
-        .background-particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 0;
-        }
-
-        .particle {
-            position: absolute;
-            background: var(--glow-color);
-            border-radius: 50%;
-            opacity: 0;
-            animation: particle-move linear infinite;
-        }
-
-        @keyframes particle-move {
-            0% {
-                transform: translate(0, 0) scale(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.5;
-                transform: scale(1);
-            }
-            100% {
-                transform: translate(var(--x), var(--y)) scale(0);
-                opacity: 0;
-            }
-        }
-
-        .container {
-            background: rgba(33, 33, 62, 0.95); /* 稍亮的深蓝紫，带透明度 */
-            border: 1px solid var(--border-color);
-            border-radius: 15px;
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3), 0 0 60px rgba(255, 0, 255, 0.15); /* 双色辉光 */
-            padding: 40px 50px;
-            text-align: center;
-            max-width: 800px;
-            width: 90%;
-            position: relative;
-            z-index: 1;
-            transform: translateY(20px);
-            opacity: 0;
-            animation: slide-up-fade-in var(--animation-duration) forwards;
-            backdrop-filter: blur(5px); /* 磨砂玻璃效果 */
-        }
-
-        @keyframes slide-up-fade-in {
-            from {
-                transform: translateY(20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            overflow-x: hidden;
         }
 
         .header {
-            margin-bottom: 30px;
+            background: linear-gradient(to right, var(--primary-green), var(--secondary-green));
+            color: var(--white-bg);
+            padding: 60px 20px; /* 增加上下内边距 */
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0 100 L0 50 C25 25 75 25 100 50 L100 100 Z" fill="%23FFFFFF" opacity="0.1"/></svg>') repeat;
+            opacity: 0.3;
+            transform: scale(2);
+            animation: wave-pattern 20s linear infinite;
+        }
+
+        @keyframes wave-pattern {
+            from { transform: translateX(0) scale(2); }
+            to { transform: translateX(-100%) scale(2); }
         }
 
         .header h1 {
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Merriweather', serif;
             font-size: 3.5em;
-            color: var(--primary-color);
-            text-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color);
-            margin-bottom: 10px;
-            animation: text-glow var(--animation-duration) infinite alternate;
-        }
-
-        @keyframes text-glow {
-            from {
-                text-shadow: 0 0 5px var(--glow-color), 0 0 10px var(--glow-color);
-            }
-            to {
-                text-shadow: 0 0 15px var(--glow-color), 0 0 25px var(--glow-color), 0 0 35px var(--glow-color);
-            }
+            margin: 0 0 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
         }
 
         .header p {
-            font-size: 1.2em;
-            color: var(--secondary-color);
+            font-size: 1.3em;
             font-weight: 300;
-            letter-spacing: 2px;
-            animation: type-in var(--animation-duration) steps(30, end) forwards;
-            white-space: nowrap;
-            overflow: hidden;
-            width: 0;
-            margin: 0 auto;
-        }
-
-        @keyframes type-in {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        .profile-image {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 3px solid var(--primary-color);
-            object-fit: cover;
-            margin: 0 auto 30px;
-            display: block;
-            box-shadow: 0 0 15px var(--glow-color);
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        }
-
-        .profile-image:hover {
-            transform: scale(1.05) rotate(5deg);
-            box-shadow: 0 0 25px var(--glow-color), 0 0 40px var(--secondary-color);
-        }
-
-        .section {
-            margin-bottom: 35px;
-            padding: 25px;
-            background: rgba(0, 0, 0, 0.3);
-            border-left: 3px solid var(--primary-color);
-            text-align: left;
-            border-radius: 8px;
-            box-shadow: inset 0 0 10px rgba(0, 255, 255, 0.1);
+            margin: 0;
             position: relative;
-            transform: translateX(-20px);
-            opacity: 0;
-            animation: slide-right-fade-in var(--animation-duration) forwards calc(var(--index) * 0.1s + 0.5s);
+            z-index: 1;
         }
 
-        @keyframes slide-right-fade-in {
-            from {
-                transform: translateX(-20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
+        /* 移除了 .profile-image 的样式，因为不再需要 */
+
+        .container {
+            width: 90%;
+            max-width: 960px;
+            padding: 30px 0;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            animation: fade-in 1s ease-out forwards;
         }
 
-        .section h2 {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--primary-color);
-            font-size: 1.8em;
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: var(--white-bg);
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            transition: transform var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out;
+            border: 1px solid var(--border-color);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h2 {
+            font-family: 'Merriweather', serif;
+            color: var(--dark-green);
+            font-size: 2.2em;
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--secondary-green);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .card p {
+            color: var(--light-text-color);
             margin-bottom: 15px;
-            position: relative;
-            padding-left: 20px;
         }
 
-        .section h2::before {
-            content: "//";
-            color: var(--secondary-color);
-            position: absolute;
-            left: 0;
-        }
-
-        .section ul {
+        .card ul {
             list-style: none;
             padding: 0;
             margin: 0;
         }
 
-        .section ul li {
+        .card ul li {
             margin-bottom: 10px;
+            padding-left: 30px;
             position: relative;
-            padding-left: 25px;
+            color: var(--text-color);
         }
 
-        .section ul li::before {
-            content: '>';
-            color: var(--secondary-color);
+        .card ul li::before {
+            content: '🌿'; /* 小树叶图标 */
             position: absolute;
             left: 0;
-            font-weight: bold;
+            top: 0;
+            font-size: 1.2em;
         }
 
-        .section a {
-            color: var(--primary-color);
+        .card a {
+            color: var(--primary-green);
             text-decoration: none;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
+            font-weight: bold;
+            transition: color var(--transition-speed) ease;
         }
 
-        .section a:hover {
-            color: var(--secondary-color);
-            text-shadow: 0 0 8px var(--secondary-color);
+        .card a:hover {
+            color: var(--dark-green);
+            text-decoration: underline;
         }
 
         .footer {
-            margin-top: 40px;
+            margin-top: 50px;
+            padding: 30px 20px;
+            background: var(--dark-green);
+            color: var(--light-green);
+            text-align: center;
+            width: 100%;
             font-size: 0.9em;
-            color: var(--border-color);
-            opacity: 0;
-            animation: fade-in var(--animation-duration) forwards calc(var(--animation-duration) + 0.5s);
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
         }
 
-        @keyframes fade-in {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .footer p {
+            margin: 0;
         }
 
         /* 响应式设计 */
-        @media (max-width: 768px) {
+        @media (min-width: 768px) {
             .container {
-                padding: 30px 25px;
+                grid-template-columns: 1fr 1fr; /* 两列布局 */
             }
+            .about-me {
+                grid-column: span 2; /* "关于我"卡片占据两列 */
+            }
+        }
 
+        @media (max-width: 767px) {
             .header h1 {
                 font-size: 2.5em;
             }
-
             .header p {
                 font-size: 1em;
             }
-
-            .profile-image {
-                width: 120px;
-                height: 120px;
-            }
-
-            .section {
+            /* 移除了针对小屏幕的头像样式调整 */
+            .card {
                 padding: 20px;
             }
-
-            .section h2 {
-                font-size: 1.5em;
+            .card h2 {
+                font-size: 1.8em;
             }
         }
     </style>
 </head>
 <body>
-    <div class="background-particles"></div>
-    <div class="container">
-        <div class="header">
-            <h1>_未来空间_</h1>
-            <p>// 欢迎来到我的数字领域 // 加载中...</p>
-        </div>
+    <div class="header">
+        <h1>🌳 绿色印记 🌍</h1>
+        <p>一位地球守护者的数字空间</p>
+    </div>
 
-        <img src="https://via.placeholder.com/150/00e6e6/ffffff?text=Your+Photo" alt="个人头像" class="profile-image">
-        <div class="section" style="--index: 0;">
+    <div class="container">
+        <div class="card about-me">
             <h2>关于我</h2>
             <p>
-                你好！我是一名致力于 [你的领域，例如：软件开发、数字艺术、数据科学] 的探索者。
-                我对构建创新解决方案、解决复杂问题以及沉浸在科技的无限可能性中充满热情。
-                我相信技术的力量可以改变世界，并努力创造有意义和用户友好的体验。
+                我是一个热爱自然、关注地球生态的倡导者。我相信每个人都可以通过微小的行动，汇聚成改变世界的巨大力量。
+                我的工作和生活都致力于探索可持续发展之道，推广环保理念，并为保护我们的蓝色星球贡献一份力量。
+            </p>
+            <p>
+                无论是在 [你的专业领域，例如：环境科学研究、可持续农业、社区环保活动]，
+                还是在日常生活中实践零废弃，我都希望能激励更多人加入到守护地球的行列。
             </p>
         </div>
 
-        <div class="section" style="--index: 1;">
-            <h2>技能集</h2>
+        <div class="card">
+            <h2>我的使命</h2>
             <ul>
-                <li>前端开发：HTML5, CSS3, JavaScript (React, Vue)</li>
-                <li>后端开发：Python (Django, Flask), Node.js (Express)</li>
-                <li>数据库：PostgreSQL, MongoDB</li>
-                <li>工具与平台：Git, Docker, AWS, Figma</li>
-                <li>语言：中文 (母语), 英语 (流利)</li>
+                <li>推广可持续生活方式</li>
+                <li>参与生态保护项目</li>
+                <li>倡导绿色科技创新</li>
+                <li>教育公众环保知识</li>
             </ul>
         </div>
 
-        <div class="section" style="--index: 2;">
-            <h2>项目展示</h2>
+        <div class="card">
+            <h2>近期行动</h2>
             <ul>
-                <li><a href="#">[项目1名称]</a> - 一个利用 [技术] 解决 [问题] 的 [类型] 项目。</li>
-                <li><a href="#">[项目2名称]</a> - 探索 [概念] 的 [类型] 实验，使用 [技术]。</li>
-                <li><a href="#">[项目3名称]</a> - [简短描述]。</li>
+                <li><a href="#">发起“城市绿肺”植树计划</a> - 在城市边缘开辟微型森林。</li>
+                <li><a href="#">参与海岸线清理活动</a> - 呼吁减少塑料污染。</li>
+                <li><a href="#">撰写环保科普文章</a> - 分享关于气候变化的最新研究。</li>
             </ul>
         </div>
 
-        <div class="section" style="--index: 3;">
+        <div class="card">
             <h2>联系我</h2>
             <p>
-                我很乐意与您交流！您可以：
+                如果您对环保事业充满热情，或者有任何合作想法，欢迎随时与我联系！
                 <ul>
-                    <li>发送邮件：<a href="mailto:your.email@example.com">your.email@example.com</a></li>
-                    <li>在 GitHub 上找到我：<a href="https://github.com/yourusername">github.com/yourusername</a></li>
-                    <li>在 LinkedIn 上连接我：<a href="https://www.linkedin.com/in/yourusername">linkedin.com/in/yourusername</a></li>
+                    <li>邮箱：<a href="mailto:your.email@example.com">your.email@example.com</a></li>
+                    <li>社交媒体：<a href="https://twitter.com/yourusername" target="_blank">Twitter</a> | <a href="https://instagram.com/yourusername" target="_blank">Instagram</a></li>
+                    <li>个人博客：<a href="#">yourblog.com</a></li>
                 </ul>
             </p>
         </div>
-
-        <div class="footer">
-            <p>&copy; 2023 你的名字. All Rights Reserved. // Powered by Code & Coffee</p>
-        </div>
     </div>
 
-    <script>
-        // 粒子动画 JavaScript
-        const particlesContainer = document.querySelector('.background-particles');
-        const numParticles = 50;
-
-        for (let i = 0; i < numParticles; i++) {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
-            const size = Math.random() * 4 + 2; // 2px to 6px
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            particle.style.left = `${Math.random() * 100}%`;
-            particle.style.top = `${Math.random() * 100}%`;
-            particle.style.animationDuration = `${Math.random() * 5 + 5}s`; // 5s to 10s
-            particle.style.animationDelay = `${Math.random() * 5}s`; // 0s to 5s delay
-
-            // Custom properties for animation
-            const travelX = (Math.random() - 0.5) * 500; // -250px to 250px
-            const travelY = (Math.random() - 0.5) * 500; // -250px to 250px
-            particle.style.setProperty('--x', `${travelX}px`);
-            particle.style.setProperty('--y', `${travelY}px`);
-
-            particlesContainer.appendChild(particle);
-        }
-
-        // 模拟打字效果
-        const typingText = document.querySelector('.header p');
-        const originalText = typingText.textContent;
-        typingText.textContent = '';
-        let i = 0;
-        function typeWriter() {
-            if (i < originalText.length) {
-                typingText.textContent += originalText.charAt(i);
-                i++;
-                setTimeout(typeWriter, 50); // 控制打字速度
-            }
-        }
-        // 动画开始后启动打字效果
-        setTimeout(typeWriter, 1500); // 配合整体入场动画
-    </script>
+    <div class="footer">
+        <p>&copy; 2023 冬冬. 与自然共生，为未来而行动。</p>
+    </div>
 </body>
 </html>
